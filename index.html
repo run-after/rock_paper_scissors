@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function computerPlay(){
+                let num =  Math.floor(Math.random()*3);
+                if(num == 0){
+                    return 'rock';
+                }
+                else if(num == 1){
+                    return 'paper';
+                }
+                else{
+                    return 'scissors';
+                }
+            }
+
+            function playRound(playerSelection, computerSelection){
+                playerSelection = prompt("Type rock, paper, or scissors:");
+                playerSelection = playerSelection.toUpperCase();
+
+                computerSelection = computerPlay();
+
+                
+
+                if(playerSelection == 'ROCK' && computerSelection == 'rock' ||
+                    playerSelection == 'PAPER' && computerSelection == 'paper' ||
+                    playerSelection == 'SCISSORS' && computerSelection == 'scissors'){
+                        
+                        return 'Tie.';
+                }
+                else if(playerSelection == 'ROCK' && computerSelection == 'paper'){
+                        return 'You lose! Paper covers rock!';
+                    }
+                else if(playerSelection == 'PAPER' && computerSelection == 'scissors'){
+                        return 'You lose! Scissors cut paper!';
+                }
+                else if(playerSelection == 'SCISSORS' && computerSelection == 'rock'){
+                        return 'You lose! Rock breaks scissors!';
+                }
+                else if(playerSelection == 'ROCK' && computerSelection == 'scissors'){
+                        return 'You win! Rock breaks scissors!';
+                }
+                else if(playerSelection == 'PAPER' && computerSelection == 'rock'){
+                        return 'You win! Paper covers rock!';
+                }
+                else if(playerSelection == 'SCISSORS' && computerSelection == 'paper'){
+                        return 'You win! Scissors cuts paper!';
+                }
+                else{
+                    return "You didn't choose a choice, bro...";
+                }
+            }
+            function game(){
+                
+                for(let i=0; i<5; i++){
+                    playRound();
+                    
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
