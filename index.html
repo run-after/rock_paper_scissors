@@ -2,6 +2,8 @@
 <html>
     <head>
         <script>
+            
+            
             function computerPlay(){
                 let num =  Math.floor(Math.random()*3);
                 if(num == 0){
@@ -14,50 +16,97 @@
                     return 'scissors';
                 }
             }
-
+            
             function playRound(playerSelection, computerSelection){
                 playerSelection = prompt("Type rock, paper, or scissors:");
                 playerSelection = playerSelection.toUpperCase();
 
                 computerSelection = computerPlay();
 
+                let tie = "Tie.", 
+                    lose = "You lose!", 
+                    win = "You win!";
+                
                 
 
                 if(playerSelection == 'ROCK' && computerSelection == 'rock' ||
                     playerSelection == 'PAPER' && computerSelection == 'paper' ||
                     playerSelection == 'SCISSORS' && computerSelection == 'scissors'){
                         
-                        return 'Tie.';
+                        return tie;
+                        
+                        
                 }
                 else if(playerSelection == 'ROCK' && computerSelection == 'paper'){
-                        return 'You lose! Paper covers rock!';
+                    
+                        return lose;
+                        
                     }
                 else if(playerSelection == 'PAPER' && computerSelection == 'scissors'){
-                        return 'You lose! Scissors cut paper!';
+                    
+                        return lose;
+                        
                 }
                 else if(playerSelection == 'SCISSORS' && computerSelection == 'rock'){
-                        return 'You lose! Rock breaks scissors!';
+                    
+                        return lose;
+                        
                 }
                 else if(playerSelection == 'ROCK' && computerSelection == 'scissors'){
-                        return 'You win! Rock breaks scissors!';
+                    
+                        return win;
+                        
                 }
                 else if(playerSelection == 'PAPER' && computerSelection == 'rock'){
-                        return 'You win! Paper covers rock!';
+                    
+                        return win;
+                        
                 }
                 else if(playerSelection == 'SCISSORS' && computerSelection == 'paper'){
-                        return 'You win! Scissors cuts paper!';
+                    
+                        return win;
+                        
                 }
                 else{
                     return "You didn't choose a choice, bro...";
                 }
             }
             function game(){
-                
-                for(let i=0; i<5; i++){
-                    playRound();
-                    
+                let roundCount = 0, compScore = 0, playerScore = 0;
+                for(let i = 0; roundCount < 5; i++, roundCount++){
+                    score(playRound());
+                                        
+                    console.log("Player score: " + playerScore);
+                    console.log("Computer score: " + compScore);
+
+            function score(result){
+                if(result== "Tie."){
+                    compScore++;
+                    playerScore++;
+                }
+                else if(result == "You lose!"){
+                    compScore++;
+                }
+                else if(result == "You win!"){
+                    playerScore++;
                 }
             }
+                }
+                if(compScore>playerScore){
+                    console.log(`Sorry, the computer beat you. 
+Final score: Computer: ${compScore} Your score: ${playerScore}`);
+                }
+                else if(playerScore>compScore){
+                    console.log(`Congrats! You  be the computer. 
+Final score: You: ${playerScore} Computer: ${compScore}`);
+                }
+                else{
+                    console.log(`Wow, you tied the computer. Final score: ${compScore}`);
+                }
+            }
+            
+            
+
         </script>
     </head>
     <body>
