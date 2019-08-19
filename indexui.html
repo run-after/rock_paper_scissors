@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div style="text-align:center" id="btns">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        </div>
+    </body>
+    <script>
+            
+            
+        const btns = document.querySelector('#btns');
+        const result = document.createElement('div');
+        btns.appendChild(result);
+        const score = document.createElement('div');
+        btns.appendChild(score);
+
+        let playerScore = 0, compScore = 0;
+
+            result.textContent = "Prepare to battle...";
+            score.textContent = `Player: ${playerScore} | Comp: ${compScore}`;
+            
+            
+            
+            //computer selection process
+            function computerPlay(){
+                let num =  Math.floor(Math.random()*3);
+                if(num == 0){
+                    return 'rock';
+                }
+                else if(num == 1){
+                    return 'paper';
+                }
+                else{
+                    return 'scissors';
+                }
+            }
+            //function to play 1 round
+            function playRound(playerSelection, computerSelection){
+                
+                computerSelection = computerPlay();
+
+                if(playerSelection == 'ROCK' && computerSelection == 'rock' ||
+                        playerSelection == 'PAPER' && computerSelection == 'paper' ||
+                        playerSelection == 'SCISSORS' && computerSelection == 'scissors'){
+                        
+                        result.textContent = `Tie, you both chose ${computerSelection}`
+                        
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'ROCK' && computerSelection == 'paper'){
+                    
+                        result.textContent =   `You lose, ${computerSelection} beats ${playerSelection}!`;
+                        
+                        compScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'PAPER' && computerSelection == 'scissors'){
+                    
+                        result.textContent =   `You lose, ${computerSelection} beats ${playerSelection}!`;
+                        
+                        compScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'SCISSORS' && computerSelection == 'rock'){
+
+                        result.textContent =   `You lose, ${computerSelection} beats ${playerSelection}!`;
+                        
+                        compScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'ROCK' && computerSelection == 'scissors'){
+
+                        result.textContent =   `You win, ${playerSelection} beats ${computerSelection}!`;
+                        
+                        playerScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'PAPER' && computerSelection == 'rock'){
+
+                        result.textContent =   `You win, ${playerSelection} beats ${computerSelection}!`;
+                        
+                        playerScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else if(playerSelection == 'SCISSORS' && computerSelection == 'paper'){
+
+                        result.textContent =   `You win, ${playerSelection} beats ${computerSelection}!`;
+                        
+                        playerScore++;
+                        score.textContent = `Player: ${playerScore} | Comp: ${compScore}`
+                        
+                }
+                else{
+                        return "You didn't choose a choice, bro...";
+                }
+            }
+
+            function game(playerSelection, computerSelection){
+              if(playerScore < 5 && compScore < 5){  
+                playRound(playerSelection, computerSelection);
+                if(playerScore >= 5){
+                    result.textContent = "GAME OVER! YOU WIN!";
+                    
+                    }
+                if(compScore >= 5){
+                    result.textContent = "GAME OVER! YOU LOSE!"
+                }
+                }
+            }
+
+        // create result and score elements and makes button click work.
+
+        let rock = document.querySelector('#rock');
+        rock.addEventListener('click', () => {
+            game('ROCK', 'computerSelection');
+        });
+
+        let paper = document.querySelector('#paper');
+        paper.addEventListener('click', () => {
+            game('PAPER', 'computerSelection');
+        });
+
+        let scissors = document.querySelector('#scissors');
+        scissors.addEventListener('click', () => {
+            game('SCISSORS', 'computerSelection');
+        }); 
+
+        
+
+        </script>
+</html>
